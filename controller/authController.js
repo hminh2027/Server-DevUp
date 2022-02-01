@@ -30,10 +30,12 @@ module.exports.login = async (req,res) => {
         const refresh_token = user.genRefreshToken({id: user.id})
 
         // Set cookie
-        res.cookie('refreshtoken', refresh_token, {
+         res.cookie('refreshtoken', refresh_token, {
             httpOnly: true,
             path: '/api/auth/refresh_token',
-            maxAge: 30*24*60*60*1000 // 30days
+            maxAge: 30*24*60*60*1000, // 30days
+            sameSite: 'None', 
+            secure: true
         })
 
         res.json({
