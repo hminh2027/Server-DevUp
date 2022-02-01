@@ -75,10 +75,12 @@ module.exports.signup = async (req,res) => {
         const refresh_token = user.genRefreshToken({id: user.id})
 
         // Save to cookie
-        res.cookie('refreshtoken', refresh_token, {
+         res.cookie('refreshtoken', refresh_token, {
             httpOnly: true,
             path: '/api/auth/refresh_token',
-            maxAge: 30*24*60*60*1000 // 30days
+            maxAge: 30*24*60*60*1000, // 30days
+            sameSite: 'None', 
+            secure: true
         })
 
         // Create email token
