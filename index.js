@@ -19,7 +19,8 @@ const http = require('http').createServer(app)
 
 const io = new Server(http, {
     cors: {
-      origin: "https://client-dev-up.vercel.app"
+      origin: "https://client-dev-up.vercel.app",
+      credentials: true
     }
   })
 
